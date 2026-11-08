@@ -66,9 +66,8 @@ export const portfolioData = {
   nowLearning: [
     { name: "Prometheus", category: "Metrics Collection & TSDB", status: "TODO: Implementing cluster exporters" },
     { name: "Grafana", category: "Observability Dashboards", status: "TODO: Building SRE dashboards" },
-    { name: "Trivy", category: "Container Vulnerability & IaC Scanning", status: "TODO: Integrating in CI pipeline gates" },
-    { name: "CKA Prep", category: "Certified Kubernetes Administrator", status: "TODO: Target Exam Q2/Q3 2026" },
-    { name: "AWS SAA-C03", category: "AWS Certified Solutions Architect - Associate", status: "TODO: Exam in progress" },
+    { name: "CKA Prep", category: "Certified Kubernetes Administrator", status: "TODO: Target Exam Q1 2027" },
+    { name: "Cloud Practitioner", category: "AWS Certified Cloud Practitioner", status: "TODO: Exam in progress" },
   ],
 
   siteMeta: {

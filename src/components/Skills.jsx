@@ -185,11 +185,11 @@ export const Skills = () => {
             </div>
 
             <span className="text-xs font-mono text-cyan-600 dark:text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 self-start sm:self-auto">
-              Active Focus • 2026
+              Active Focus • 2026 – 2027
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {nowLearning.map((item) => (
               <div
                 key={item.name}

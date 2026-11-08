@@ -4,6 +4,8 @@ import { Mail, ArrowUp } from 'lucide-react';
 import { Icons } from './Icons';
 import { portfolioData } from '../data/portfolioData';
 
+const currentYear = new Date().getFullYear();
+
 export const Footer = () => {
   const { personal } = portfolioData;
 
@@ -129,7 +131,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 font-mono">
           <div>
-            © {new Date().getFullYear()} {personal.name} {personal.surname}. All rights reserved.
+            © {currentYear} {personal.name} {personal.surname}. All rights reserved.
           </div>
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1.5 text-cyan-300">

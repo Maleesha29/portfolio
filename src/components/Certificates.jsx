@@ -10,7 +10,7 @@ import {
   Cpu, 
   Cloud,
   FileCheck,
-  Check
+  Boxes
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -59,6 +59,16 @@ export const Certificates = () => {
           btnHover: 'hover:border-purple-400 hover:text-purple-300 hover:bg-purple-950/50',
           badgeText: 'text-purple-300',
         };
+      case 'docker':
+        return {
+          icon: Boxes,
+          iconBox: 'bg-sky-950/60 border-sky-500/40 text-sky-400',
+          border: 'border-sky-500/20 hover:border-sky-400/50',
+          glow: 'from-sky-500/15 via-cyan-500/10 to-transparent',
+          tagBg: 'bg-sky-950/40 border-sky-500/20 text-sky-300 hover:border-sky-400/50',
+          btnHover: 'hover:border-sky-400 hover:text-sky-300 hover:bg-sky-950/50',
+          badgeText: 'text-sky-300',
+        };
       case 'linux':
       default:
         return {
@@ -98,7 +108,7 @@ export const Certificates = () => {
         </motion.div>
 
         {/* Certificate Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {certificates.map((cert, idx) => {
             const theme = getCertTheme(cert.iconType);
             const IconComponent = theme.icon;

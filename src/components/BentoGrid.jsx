@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Cpu, 
-  MapPin, 
-  Clock, 
-  Layers, 
-  Sparkles, 
-  ExternalLink, 
   CheckCircle2, 
-  ShieldCheck, 
-  ChevronRight,
-  User,
   Terminal,
-  Award,
   ArrowUpRight,
   Cloud,
-  Lock,
   Boxes,
   Activity,
   Download,
-  GitBranch,
-  Flame,
-  Shield,
-  Zap,
-  Check
+  GitBranch
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import profileImg from '../assets/profile.jpg';
@@ -53,27 +39,7 @@ const itemVariants = {
 
 export const BentoGrid = () => {
   const { personal, bentoItems } = portfolioData;
-  const [currentTime, setCurrentTime] = useState('');
   const [imgError, setImgError] = useState(false);
-
-  // Real-time clock for Colombo, Sri Lanka (Asia/Colombo / UTC+5:30)
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options = {
-        timeZone: 'Asia/Colombo',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-      };
-      setCurrentTime(new Intl.DateTimeFormat('en-US', options).format(now));
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const pillarStyles = [
     {
@@ -269,7 +235,7 @@ export const BentoGrid = () => {
               {/* Narrative Content */}
               <motion.div variants={itemVariants} className="space-y-4 text-zinc-300 text-base sm:text-lg leading-relaxed font-normal">
                 <p>
-                  I'm an <strong className="text-cyan-300 font-semibold">{personal.role}</strong> and BSc (Hons) in Information Technology graduate from <strong className="text-indigo-300 font-medium">SLIIT</strong> based in Colombo, Sri Lanka. I specialize in designing and provisioning cloud environments using <strong className="text-violet-300 font-medium">AWS, Terraform (IaC), Docker, Kubernetes, and Jenkins CI/CD pipelines</strong>.
+                  I'm a <strong className="text-cyan-300 font-semibold">{personal.role}</strong> and BSc (Hons) in Information Technology graduate from <strong className="text-indigo-300 font-medium">SLIIT</strong> based in Colombo, Sri Lanka. I specialize in designing and provisioning cloud environments using <strong className="text-violet-300 font-medium">AWS Cloud, Terraform (IaC), Docker, Kubernetes (EKS & Minikube), and GitOps CI/CD pipelines (Jenkins & Argo CD)</strong>.
                 </p>
                 <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
                   With hands-on expertise spanning fullstack development with the MERN stack, data risk analytics, and modern DevOps practices, I focus on building scalable, secure, and automated cloud-native systems.

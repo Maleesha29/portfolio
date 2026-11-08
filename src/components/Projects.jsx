@@ -6,15 +6,13 @@ import {
   ArrowUpRight, 
   TrendingUp, 
   X, 
-  Layers, 
   Cpu, 
   CheckCircle2,
   GitBranch,
   ShieldAlert,
   Package,
   Boxes,
-  FileCode2,
-  Sparkles
+  FileCode2
 } from 'lucide-react';
 import { Icons } from './Icons';
 import { portfolioData } from '../data/portfolioData';

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Command, Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { Command, Menu, X, ArrowUpRight } from 'lucide-react';
 
 export const Navbar = ({ onOpenCommand }) => {
   const [scrolled, setScrolled] = useState(false);

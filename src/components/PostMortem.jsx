@@ -8,8 +8,7 @@ import {
   ShieldCheck, 
   ChevronDown, 
   ChevronUp, 
-  Terminal,
-  FileText
+  Terminal
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 

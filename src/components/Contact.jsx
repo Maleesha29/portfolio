@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Terminal, CheckCircle2, AlertCircle, Copy, Check, Mail, CornerDownLeft, Sparkles } from 'lucide-react';
+import { Send, Terminal, CheckCircle2, AlertCircle, Copy, Check, Mail, CornerDownLeft } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const Contact = () => {
@@ -34,13 +34,21 @@ export const Contact = () => {
     const cleanCmd = cmd.toLowerCase();
 
     if (cleanCmd === 'help') {
-      response = 'Available commands: \n  • curl /metrics      - Check cluster infrastructure SLO telemetry\n  • kubectl get nodes  - Inspect production node topology\n  • cat about.txt      - Print engineer credentials & residency\n  • ping               - Network roundtrip latency test\n  • clear              - Clear stdout terminal session';
+      response = 'Available commands: \n  • curl /metrics      - Check cluster infrastructure SLO telemetry\n  • kubectl get nodes  - Inspect production node topology\n  • argocd app list    - View live GitOps sync states\n  • docker ps          - List active microservice containers\n  • terraform version  - Check IaC orchestrator details\n  • projects           - Enumerate featured production repositories\n  • cat about.txt      - Print engineer credentials & residency\n  • ping               - Network roundtrip latency test\n  • clear              - Clear stdout terminal session';
     } else if (cleanCmd.includes('curl /metrics') || cleanCmd.includes('metrics')) {
       response = '# TYPE http_requests_total counter\nhttp_requests_total{status="200",handler="gateway"} 3892110\n# TYPE infra_uptime_ratio gauge\ninfra_uptime_ratio{region="ap-south-1"} 0.99994\n# TYPE mttr_seconds gauge\nmttr_seconds{p99="true"} 240';
     } else if (cleanCmd.includes('kubectl get nodes')) {
       response = 'NAME               STATUS   ROLES    AGE   VERSION   INTERNAL-IP\neks-prod-cmbo-01   Ready    worker   42d   v1.30.2   10.0.12.84\neks-prod-cmbo-02   Ready    worker   42d   v1.30.2   10.0.12.193\neks-karpenter-spot Ready    spot     14m   v1.30.2   10.0.18.52';
+    } else if (cleanCmd.includes('argocd') || cleanCmd.includes('gitops')) {
+      response = 'NAME                     CLUSTER                         STATUS   HEALTH   REVISION\nspring-boot-pipeline     https://kubernetes.default.svc  Synced   Healthy  main/9b27a1c\neks-alb-ingress-stack    https://kubernetes.default.svc  Synced   Healthy  main/a41f89e';
+    } else if (cleanCmd.includes('docker')) {
+      response = 'CONTAINER ID   IMAGE                                COMMAND                  PORTS                    NAMES\na91c4d8e201b   maleesha29/smart-pet-care-api:latest "node server.js"         0.0.0.0:5000->5000/tcp   pet-care-api\nb72f3e9a114c   maleesha29/smart-pet-care-ml:latest  "python app.py"          0.0.0.0:5001->5001/tcp   pet-care-ml\nc41e8f2d909a   mongo:6.0-jammy                      "docker-entrypoint.s…"   27017/tcp                pet-care-db';
+    } else if (cleanCmd.includes('terraform')) {
+      response = 'Terraform v1.9.5 on linux_amd64\n+ provider registry.terraform.io/hashicorp/aws v5.64.0\nState: S3 remote backend with DynamoDB state locking';
+    } else if (cleanCmd === 'projects' || cleanCmd === 'ls') {
+      response = '1. jenkins-argo-pipeline     [GitOps CI/CD • Jenkins • Argo CD • K8s]\n2. Terraform_Project        [AWS Multi-AZ VPC • ALB • EC2 • S3]\n3. eks-fargate-alb-deployment [AWS EKS • Fargate • ALB Ingress • Helm • IRSA]\n4. nodejs-aws-ec2-deployment [Node.js • Express • Stripe API • Docker • EC2]\n5. smart-pet-care           [Docker Compose • Microservices • React • Flask ML • MongoDB]';
     } else if (cleanCmd.includes('cat about.txt') || cleanCmd.includes('cat about')) {
-      response = `Name: ${personal.name} ${personal.surname}\nRole: ${personal.role}\nLocation: ${personal.location}\nEducation: BSc (Hons) in IT (SLIIT)\nCertifications: AWS SimuLearn, AWS Academy Builder, K8s (KodeKloud), Jenkins (KodeKloud)\nContact: ${personal.email} | +94 767067288`;
+      response = `Name: ${personal.name} ${personal.surname}\nRole: ${personal.role}\nLocation: ${personal.location}\nEducation: BSc (Hons) in IT (SLIIT)\nCertifications: AWS SimuLearn, AWS Academy Builder, K8s (KodeKloud), Jenkins (KodeKloud), Docker (CoDeKu)\nContact: ${personal.email} | +94 767067288`;
     } else if (cleanCmd.includes('ping')) {
       response = '64 bytes from cmbo.cloud.maleesha.dev: icmp_seq=1 ttl=58 time=12.4 ms\n--- cmbo.cloud ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss';
     } else if (cleanCmd === 'clear') {
@@ -103,7 +111,7 @@ export const Contact = () => {
           timestamp: new Date().toISOString(),
           status: response.ok ? '200 OK' : '200 OK (Queued)',
         });
-      } catch (err) {
+      } catch {
         // Fallback gracefully
         const receiptId = `DISPATCH-ACK-${Math.floor(100000 + Math.random() * 900000)}`;
         setSubmissionReceipt({

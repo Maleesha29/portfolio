@@ -14,14 +14,14 @@ import {
 import { Icons } from './Icons';
 import { portfolioData } from '../data/portfolioData';
 
-export const CommandMenu = ({ isOpen, onClose, onSelectAction }) => {
+export const CommandMenu = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const actions = [
     {
       id: 'certificates',
-      title: 'View Verified Certifications (AWS, Kubernetes, Jenkins)',
+      title: 'View Verified Industry Certifications (AWS, Kubernetes, Jenkins, Docker)',
       category: 'Navigation',
       icon: Award,
       action: () => {
@@ -114,7 +114,31 @@ export const CommandMenu = ({ isOpen, onClose, onSelectAction }) => {
     },
   ];
 
-  const filtered = actions.filter((item) =>
+  const projectActions = portfolioData.projects.map((proj) => ({
+    id: proj.id,
+    title: `${proj.title} • ${proj.category}`,
+    category: 'Project',
+    icon: Layers,
+    action: () => {
+      window.open(proj.github, '_blank');
+      onClose();
+    },
+  }));
+
+  const certificateActions = portfolioData.certificates.map((cert) => ({
+    id: cert.id,
+    title: `${cert.title} • ${cert.issuer}`,
+    category: 'Certificate',
+    icon: Award,
+    action: () => {
+      window.open(cert.verifyUrl, '_blank');
+      onClose();
+    },
+  }));
+
+  const allActions = [...actions, ...projectActions, ...certificateActions];
+
+  const filtered = allActions.filter((item) =>
     item.title.toLowerCase().includes(query.toLowerCase()) ||
     item.category.toLowerCase().includes(query.toLowerCase())
   );
@@ -129,14 +153,14 @@ export const CommandMenu = ({ isOpen, onClose, onSelectAction }) => {
         return 'bg-emerald-950/50 text-emerald-300 border-emerald-500/30';
       case 'External':
         return 'bg-purple-950/50 text-purple-300 border-purple-500/30';
+      case 'Project':
+        return 'bg-blue-950/50 text-sky-300 border-sky-500/30';
+      case 'Certificate':
+        return 'bg-amber-950/50 text-amber-300 border-amber-500/30';
       default:
         return 'bg-gray-800 text-zinc-300 border-white/10';
     }
   };
-
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [query]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -190,7 +214,10 @@ export const CommandMenu = ({ isOpen, onClose, onSelectAction }) => {
             <input
               type="text"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setSelectedIndex(0);
+              }}
               placeholder="Type a command or jump to section..."
               className="flex-1 bg-transparent text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none font-sans"
               autoFocus

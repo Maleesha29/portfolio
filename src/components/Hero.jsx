@@ -4,12 +4,11 @@ import {
   ArrowRight, 
   Download, 
   ShieldCheck, 
-  ChevronDown,
-  Sparkles
+  ChevronDown
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
-export const Hero = ({ onOpenCommand }) => {
+export const Hero = () => {
   const { personal } = portfolioData;
 
   return (

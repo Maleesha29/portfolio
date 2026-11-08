@@ -24,11 +24,18 @@ export const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const categories = ['All', 'DevOps & CI/CD', 'Cloud / AWS', 'Kubernetes'];
+  const categories = ['All', 'DevOps & CI/CD', 'Cloud / AWS', 'Kubernetes', 'Docker & Containers'];
 
   const filteredProjects = activeFilter === 'All'
     ? projects
-    : projects.filter((p) => p.category === activeFilter);
+    : projects.filter((p) => {
+        if (p.category === activeFilter) return true;
+        if (activeFilter === 'Kubernetes' && (p.tags?.includes('Kubernetes') || p.tags?.includes('Minikube'))) return true;
+        if (activeFilter === 'DevOps & CI/CD' && (p.tags?.includes('GitOps') || p.tags?.includes('DevOps') || p.tags?.includes('Docker'))) return true;
+        if (activeFilter === 'Docker & Containers' && (p.category === 'Docker & Containers' || p.tags?.includes('Docker') || p.tags?.includes('Docker Compose'))) return true;
+        if (activeFilter === 'Cloud / AWS' && (p.category === 'Cloud / AWS' || p.tags?.includes('AWS'))) return true;
+        return false;
+      });
 
   const getArtifactIcon = (type) => {
     switch (type) {
@@ -53,6 +60,8 @@ export const Projects = () => {
         return 'bg-blue-950/90 text-blue-300 border-blue-500/40';
       case 'Cloud / AWS':
         return 'bg-amber-950/90 text-amber-300 border-amber-500/40';
+      case 'Docker & Containers':
+        return 'bg-sky-950/90 text-sky-300 border-sky-500/40';
       default:
         return 'bg-cyan-950/90 text-cyan-300 border-cyan-500/40';
     }
@@ -111,7 +120,7 @@ export const Projects = () => {
         {/* Projects Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, idx) => (
@@ -132,6 +141,14 @@ export const Projects = () => {
                     <img
                       src={project.image}
                       alt={project.title}
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = project.category === 'Cloud / AWS'
+                          ? "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+                          : project.category === 'Docker & Containers'
+                          ? "https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=1200&q=80"
+                          : "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=1200&q=80";
+                      }}
                       className="w-full h-full object-cover object-center contrast-110 group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                       loading="lazy"
                     />

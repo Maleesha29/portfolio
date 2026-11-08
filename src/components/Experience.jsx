@@ -75,6 +75,7 @@ export const Experience = () => {
                         <motion.div
                           animate={{ rotate: isExpanded ? 90 : 0 }}
                           transition={{ duration: 0.25 }}
+                          className="shrink-0"
                         >
                           <ChevronRight className="w-4 h-4 text-cyan-400" />
                         </motion.div>

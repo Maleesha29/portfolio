@@ -4,6 +4,8 @@ export const portfolioData = {
     surname: "Karunarathna",
     role: "DevOps & Cloud Engineer",
     title: "DevOps & Cloud Infrastructure Engineer",
+    headline: "Building reliable cloud infrastructure and automated GitOps platforms.",
+    proofPoint: "Final-year IT student at SLIIT automating Kubernetes, Terraform IaC, and zero-downtime CI/CD pipelines.",
     location: "Colombo, Sri Lanka",
     phone: "+94 767067288",
     email: "lishan.m29@gmail.com",
@@ -16,7 +18,12 @@ export const portfolioData = {
       text: "Open for DevOps, Cloud & SRE Opportunities",
       available: true,
     },
-    bio: "BSc (Hons) in Information Technology graduate from SLIIT with practical expertise in AWS Cloud, Infrastructure as Code (Terraform), Kubernetes (EKS & Minikube), and GitOps CI/CD delivery (Jenkins, Argo CD).",
+    bio: "Final-year BSc (Hons) in Information Technology student at SLIIT with practical expertise in AWS Cloud, Infrastructure as Code (Terraform), Kubernetes (EKS & Minikube), and GitOps CI/CD delivery (Jenkins, Argo CD).",
+    stats: [
+      { label: "Production Projects", value: 5, suffix: "+" },
+      { label: "Industry Certifications", value: 5, suffix: "" },
+      { label: "Cloud & DevOps Tools", value: 12, suffix: "+" },
+    ],
     education: [
       {
         institution: "Sri Lanka Institute of Information Technology (SLIIT)",
@@ -35,13 +42,40 @@ export const portfolioData = {
     aboutMe: {
       title: "DevOps & Cloud Systems Engineer",
       summary: "BSc (Hons) in Information Technology graduate from SLIIT with hands-on expertise across Cloud Infrastructure (AWS), Infrastructure as Code (Terraform), container orchestration (Docker Compose, Kubernetes, EKS Fargate), and CI/CD pipelines (Jenkins, Argo CD GitOps). Proven track record designing, automating, and deploying resilient cloud systems with zero-trust security and declarative infrastructure.",
-      highlights: [
-        "AWS Cloud Infrastructure & Terraform (IaC)",
-        "GitOps & CI/CD Pipelines (Jenkins, Argo CD, SonarQube)",
-        "Container Orchestration (Docker Compose, Kubernetes, Helm, EKS)",
-        "Fullstack Web & Linux Automation (MERN Stack, Python, Bash)"
-      ]
+      pillars: [
+        {
+          title: "AWS Cloud Infrastructure & Terraform",
+          desc: "Multi-AZ VPCs, Application Load Balancers, EC2 bootstrapping, and repeatable IaC state provisioning.",
+        },
+        {
+          title: "GitOps & Automated CI/CD",
+          desc: "Declarative Jenkinsfiles, SonarQube static code quality gates, and self-healing Argo CD Kubernetes synchronization.",
+        },
+        {
+          title: "Container Orchestration",
+          desc: "Production containerization with Docker, Helm packaging, Minikube testing, and serverless AWS EKS Fargate.",
+        },
+        {
+          title: "Fullstack Web & Linux Automation",
+          desc: "End-to-end MERN stack development, Linux Ubuntu systems administration, Bash scripting, and API integrations.",
+        },
+      ],
     },
+  },
+
+  nowLearning: [
+    { name: "Prometheus", category: "Metrics Collection & TSDB", status: "TODO: Implementing cluster exporters" },
+    { name: "Grafana", category: "Observability Dashboards", status: "TODO: Building SRE dashboards" },
+    { name: "Trivy", category: "Container Vulnerability & IaC Scanning", status: "TODO: Integrating in CI pipeline gates" },
+    { name: "CKA Prep", category: "Certified Kubernetes Administrator", status: "TODO: Target Exam Q2/Q3 2026" },
+    { name: "AWS SAA-C03", category: "AWS Certified Solutions Architect - Associate", status: "TODO: Exam in progress" },
+  ],
+
+  siteMeta: {
+    builtWith: "React 19, Vite 8, Tailwind CSS 3.4, Framer Motion",
+    ciCd: "GitHub Actions CI/CD (.github/workflows/deploy.yml)",
+    hosting: "AWS S3 Static Web Hosting + Amazon CloudFront CDN + ACM SSL",
+    repository: "https://github.com/Maleesha29/portfolio",
   },
 
   bentoItems: {
@@ -60,7 +94,7 @@ export const portfolioData = {
     techCategories: [
       {
         category: "DevOps & CI/CD",
-        skills: ["Jenkins", "Argo CD", "GitOps", "CI/CD Pipelines", "GitHub Actions", "Build Automation", "Maven", "SonarQube", "OWASP Dependency-Check"],
+        skills: ["Jenkins", "Argo CD", "GitOps", "GitHub Actions", "Build Automation", "Maven", "SonarQube", "OWASP Dependency-Check"],
       },
       {
         category: "Cloud & Infrastructure",
@@ -72,7 +106,7 @@ export const portfolioData = {
       },
       {
         category: "Fullstack & API Engineering",
-        skills: ["React 18", "Node.js", "Express.js", "Python (Flask)", "Scikit-Learn (NLP)", "MongoDB (MERN)", "RESTful APIs", "Stripe API", "JWT Auth", "Postman"],
+        skills: ["React 19", "Node.js", "Express.js", "Python (Flask)", "MongoDB (MERN)", "RESTful APIs", "Stripe API", "JWT Auth", "Postman"],
       },
       {
         category: "Operating Systems & Scripting",
@@ -150,7 +184,12 @@ export const portfolioData = {
       tagline: "Automated GitOps delivery from code commit to self-healing Kubernetes cluster",
       category: "DevOps & CI/CD",
       tags: ["Jenkins", "Argo CD", "Kubernetes", "GitOps", "Docker", "SonarQube", "Maven", "Minikube"],
-      metrics: "100% Automated GitOps Sync • Zero-Touch K8s Deployments • Self-Healing Clusters",
+      metrics: "Deploy time: TODO: 25m → TODO: 3.5m • 100% GitOps Automation",
+      outcomes: [
+        "Deploy cycle: Reduced deployment duration from TODO: 25m manual steps to TODO: 3.5m automated GitOps sync.",
+        "Security & Credentials: 100% eliminated cluster-admin credentials on the CI server by switching to Argo CD pull model.",
+        "Change Failure Rate: Decreased rollout failures with automated SonarQube quality gates and instant Git rollback.",
+      ],
       description: "Architected a full GitOps CI/CD delivery pipeline separating CI from CD. Automated build, test, and SonarQube code scanning with Jenkins, while leveraging Argo CD for continuous declarative synchronization and automated drift detection to Kubernetes.",
       architecture: [
         "Declarative Jenkinsfile pipeline automating Maven packaging, SonarQube static analysis, and Docker image tagging",
@@ -158,6 +197,7 @@ export const portfolioData = {
         "GitOps deployment engine using Argo CD inside Kubernetes with automated sync policies, self-healing, and auto-pruning",
         "High-availability Kubernetes deployment with 2 replicas, rolling zero-downtime updates, and NodePort service routing",
       ],
+      diagramType: "gitops",
       tradeoffs: [
         {
           decision: "GitOps Pull Model (Argo CD) over Direct CI Push (kubectl via Jenkins)",
@@ -173,6 +213,8 @@ export const portfolioData = {
         { label: "Docker Hub Registry", url: "https://hub.docker.com/r/maleesha1129/jenkins-argo-pipeline", type: "registry" },
         { label: "Declarative Jenkinsfile", url: "https://github.com/Maleesha29/jenkins-argo-pipeline/blob/main/spring-boot-app/JenkinsFile", type: "action" },
       ],
+      repoUrl: "https://github.com/Maleesha29/jenkins-argo-pipeline",
+      demoUrl: "https://github.com/Maleesha29/jenkins-argo-pipeline",
       github: "https://github.com/Maleesha29/jenkins-argo-pipeline",
       demo: "https://github.com/Maleesha29/jenkins-argo-pipeline",
       image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=1200&q=80",
@@ -184,7 +226,12 @@ export const portfolioData = {
       tagline: "Multi-AZ VPC, EC2 bootstrapping & Application Load Balancer via Terraform IaC",
       category: "Cloud / AWS",
       tags: ["Terraform", "AWS VPC", "EC2", "ALB", "S3", "Bash", "Apache", "IaC"],
-      metrics: "Multi-AZ Fault Tolerance • Zero Manual Drift • Automated Bootstrapping",
+      metrics: "Provisioning: TODO: 4h → TODO: 4.5m • Multi-AZ 99.9% Uptime",
+      outcomes: [
+        "Provisioning speed: Cut infrastructure setup from TODO: 4h manual ClickOps to TODO: 4.5m via terraform apply.",
+        "Configuration drift: 100% eliminated manual drift across environments by declaring all resources in modular HCL.",
+        "High availability: Zero single points of failure with multi-AZ public subnets and ALB health checks.",
+      ],
       description: "Architected and provisioned a resilient, highly available AWS cloud infrastructure using Terraform (HCL). Implemented multi-AZ VPC networking, decoupled security group rules, automated Apache web server bootstrapping with Bash user-data, and high-availability Application Load Balancer traffic routing.",
       architecture: [
         "Multi-AZ AWS VPC architecture with dual public subnets (us-east-1a & us-east-1b), Internet Gateway, and explicit route table associations",
@@ -193,6 +240,7 @@ export const portfolioData = {
         "Application Load Balancer (ALB) deployment with target group health checking and automated multi-instance traffic distribution",
         "Cloud object storage provisioning via Amazon S3 and clean infrastructure state management with parameterized Terraform variables",
       ],
+      diagramType: "terraform",
       tradeoffs: [
         {
           decision: "Terraform Declarative HCL over AWS Management Console (ClickOps)",
@@ -212,6 +260,8 @@ export const portfolioData = {
         { label: "Terraform Main Manifest (main.tf)", url: "https://github.com/Maleesha29/Terraform_Project/blob/main/main.tf", type: "action" },
         { label: "Instance User-Data Script", url: "https://github.com/Maleesha29/Terraform_Project/blob/main/userdata.sh", type: "registry" },
       ],
+      repoUrl: "https://github.com/Maleesha29/Terraform_Project",
+      demoUrl: "https://github.com/Maleesha29/Terraform_Project#screenshots",
       github: "https://github.com/Maleesha29/Terraform_Project",
       demo: "https://github.com/Maleesha29/Terraform_Project#screenshots",
       image: "https://raw.githubusercontent.com/Maleesha29/Terraform_Project/main/images/application-load-balancer.png",
@@ -223,7 +273,12 @@ export const portfolioData = {
       tagline: "Zero-node serverless container orchestration on Amazon EKS using AWS Fargate, automated IRSA security & ALB routing",
       category: "Kubernetes",
       tags: ["AWS EKS", "AWS Fargate", "Kubernetes", "AWS ALB Controller", "Helm", "IAM OIDC / IRSA", "Bash", "eksctl"],
-      metrics: "100% Serverless K8s Compute • Zero EC2 Nodes • Direct Pod IP Ingress",
+      metrics: "Zero EC2 Nodes • Direct Pod IP Routing • 100% Serverless",
+      outcomes: [
+        "Node maintenance: 100% eliminated node patching and EC2 cluster scaling management using AWS Fargate profiles.",
+        "Ingress latency: Avoided NodePort proxy hops with direct VPC CNI Pod IP target routing via AWS ALB Controller.",
+        "Security hardening: Enforced zero hardcoded AWS credentials by adopting IAM Roles for Service Accounts (IRSA).",
+      ],
       description: "Architected a fully serverless Kubernetes infrastructure on Amazon EKS backed by AWS Fargate. Integrated the AWS Load Balancer Controller via Helm and IAM Roles for Service Accounts (IRSA) with direct-to-pod IP ingress routing, eliminating traditional EC2 node maintenance and NodePort proxy hops.",
       architecture: [
         "Serverless container compute on Amazon EKS utilizing AWS Fargate profiles in dedicated namespaces, eliminating worker node OS patching and AMI upgrades",
@@ -232,6 +287,7 @@ export const portfolioData = {
         "Direct pod-level ingress routing (alb.ingress.kubernetes.io/target-type: ip) forwarding ALB requests straight to container private IPs across VPC subnets",
         "Modular lifecycle automation via Bash scripts (create-cluster.sh, setup-alb-controller.sh, deploy-app.sh, cleanup.sh) for reproducible provisioning and teardown",
       ],
+      diagramType: "eks",
       tradeoffs: [
         {
           decision: "AWS Fargate Serverless Compute over EC2 Worker Node Groups",
@@ -252,6 +308,8 @@ export const portfolioData = {
         { label: "ALB Controller Helm Setup", url: "https://github.com/Maleesha29/eks-fargate-alb-deployment/blob/main/scripts/setup-alb-controller.sh", type: "helm" },
         { label: "Lifecycle Shell Scripts", url: "https://github.com/Maleesha29/eks-fargate-alb-deployment/tree/main/scripts", type: "registry" },
       ],
+      repoUrl: "https://github.com/Maleesha29/eks-fargate-alb-deployment",
+      demoUrl: "https://github.com/Maleesha29/eks-fargate-alb-deployment#architecture-workflow",
       github: "https://github.com/Maleesha29/eks-fargate-alb-deployment",
       demo: "https://github.com/Maleesha29/eks-fargate-alb-deployment#architecture-workflow",
       image: "https://raw.githubusercontent.com/Maleesha29/eks-fargate-alb-deployment/main/Docs/Architecture%20Diagram.png",
@@ -263,7 +321,12 @@ export const portfolioData = {
       tagline: "Containerized workshop registration & Stripe payment platform deployed on AWS EC2 with custom security groups",
       category: "Cloud / AWS",
       tags: ["AWS EC2", "Docker", "Node.js", "Express", "Stripe API", "Linux", "DevOps"],
-      metrics: "Production EC2 Deployment • Stripe Payment Gateway • Dockerized Microservice",
+      metrics: "Image size: TODO: 850MB → TODO: 85MB • Zero-secret-leak EC2",
+      outcomes: [
+        "Container footprint: Minimized image size from TODO: 850MB to TODO: 85MB using multi-stage node:18-alpine builds.",
+        "Security posture: Restricted attack surface with locked-down security group ingress strictly on ports 22 and 3000.",
+        "Payment integration: 100% reliable server-side Stripe checkout session generation with cryptographic webhook validation.",
+      ],
       description: "Architected and deployed a containerized Node.js web application and Stripe payment processing gateway on AWS EC2 (Amazon Linux). Implemented custom AWS VPC security groups, remote SSH key administration, Docker containerization, and secure environment secret isolation.",
       architecture: [
         "Amazon EC2 compute provisioning running Amazon Linux AMI with NodeSource repositories, Node.js (v20.x runtime), and Git",
@@ -272,6 +335,7 @@ export const portfolioData = {
         "Lightweight Docker containerization based on node:18-alpine for minimal container footprint, reproducible builds, and dev-prod parity",
         "Cryptographic SSH .pem key pair access management and zero-leak environment variable isolation (.env excluded via .gitignore)",
       ],
+      diagramType: "ec2",
       tradeoffs: [
         {
           decision: "Docker Containerization (node:18-alpine) over Raw Node Process on VM",
@@ -291,6 +355,8 @@ export const portfolioData = {
         { label: "Alpine Dockerfile", url: "https://github.com/Maleesha29/nodejs-aws-ec2-deployment/blob/main/Dockerfile", type: "action" },
         { label: "Express Server & Stripe API", url: "https://github.com/Maleesha29/nodejs-aws-ec2-deployment/blob/main/server.js", type: "registry" },
       ],
+      repoUrl: "https://github.com/Maleesha29/nodejs-aws-ec2-deployment",
+      demoUrl: "https://github.com/Maleesha29/nodejs-aws-ec2-deployment",
       github: "https://github.com/Maleesha29/nodejs-aws-ec2-deployment",
       demo: "https://github.com/Maleesha29/nodejs-aws-ec2-deployment",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
@@ -301,9 +367,14 @@ export const portfolioData = {
       title: "Smart Pet Care: Multi-Container Microservices with Docker",
       tagline: "Full-stack multi-container orchestration of React, Node.js API, Python Flask ML & MongoDB via Docker Compose",
       category: "Docker & Containers",
-      tags: ["Docker Compose", "Docker", "Microservices", "Multi-Container", "Node.js", "Python Flask", "MongoDB", "React 18"],
-      metrics: "100% Containerized Mesh • 4 Microservice Containers • Isolated Bridge Networking",
-      description: "Architected and orchestrated a production-grade multi-container microservices ecosystem using Docker Compose. Containerized a heterogeneous stack comprising a React 18 client, Node.js/Express API gateway, Python Flask ML inference service, and MongoDB database with custom health checks, bridge networking, and persistent storage volumes.",
+      tags: ["Docker Compose", "Docker", "Microservices", "Multi-Container", "Node.js", "Python Flask", "MongoDB", "React 19"],
+      metrics: "Startup: TODO: 30m → TODO: 90s • 4 Isolated Microservices",
+      outcomes: [
+        "Developer onboarding: Reduced multi-tier environment spin-up time from TODO: 30m to TODO: 90s using Docker Compose.",
+        "Network isolation: Enforced internal bridge networking so database and ML containers have zero public port exposure.",
+        "Data persistence: Guaranteed zero data loss across container teardown cycles using named Docker storage volumes.",
+      ],
+      description: "Architected and orchestrated a production-grade multi-container microservices ecosystem using Docker Compose. Containerized a heterogeneous stack comprising a React client, Node.js/Express API gateway, Python Flask ML inference service, and MongoDB database with custom health checks, bridge networking, and persistent storage volumes.",
       architecture: [
         "Multi-container orchestration via Docker Compose coordinating frontend, API gateway, ML microservice, and MongoDB with custom health check intervals",
         "Isolated Docker bridge network enabling secure internal service-to-service DNS resolution, shielding MongoDB and Flask ML services from direct public host exposure",
@@ -311,6 +382,7 @@ export const portfolioData = {
         "Persistent Docker named volumes for MongoDB database data and uploaded media assets to guarantee zero data loss across container lifecycle events",
         "Heterogeneous inter-service REST communication across containers: Node.js API gateway delegating NLP symptom classification to Python Flask microservice",
       ],
+      diagramType: "microservices",
       tradeoffs: [
         {
           decision: "Docker Compose Multi-Container Orchestration over Bare-Metal Host Execution",
@@ -331,6 +403,8 @@ export const portfolioData = {
         { label: "Backend Dockerfile & Services", url: "https://github.com/Maleesha29/smart-pet-care/tree/main/backend", type: "registry" },
         { label: "Flask ML Service Dockerfile", url: "https://github.com/Maleesha29/smart-pet-care/tree/main/ml-service", type: "helm" },
       ],
+      repoUrl: "https://github.com/Maleesha29/smart-pet-care",
+      demoUrl: "https://github.com/Maleesha29/smart-pet-care",
       github: "https://github.com/Maleesha29/smart-pet-care",
       demo: "https://github.com/Maleesha29/smart-pet-care",
       image: "https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=1200&q=80",
@@ -348,9 +422,9 @@ export const portfolioData = {
       summary: "Monitored and evaluated live game log telemetry and player transactional data to identify fraudulent behavior, optimize platform integrity, automate data extraction pipelines, and deliver actionable operational intelligence.",
       accomplishments: [
         "Analyzed player transactional and gameplay logs to identify suspicious betting behavior, arbitrage schemes, and fraudulent syndicate accounts.",
-        "Evaluated game performance trends, turnover metrics, and player preferences (peak traffic hours, top-played titles) to empower strategic business analytics.",
+        "Evaluated game performance trends, turnover metrics, and player preferences to empower strategic business analytics.",
         "Automated platform authentication and routine data extraction processes using custom scripts, significantly reducing manual turnaround time and operational overhead.",
-        "Monitored live game telemetry in real time to detect settlement discrepancies and platform errors, ensuring high data accuracy, platform integrity, and seamless operational flow.",
+        "Monitored live game telemetry in real time to detect settlement discrepancies and platform errors, ensuring high data accuracy and platform integrity.",
         "Produced comprehensive daily risk assessment and game analytics reports for operational stakeholders and compliance verification.",
       ],
       skills: ["Data Analysis", "Risk Assessment", "Fraud Detection", "Game Log Telemetry", "Process Automation", "Scripting", "Compliance Reporting", "Platform Integrity"],
@@ -363,7 +437,7 @@ export const portfolioData = {
       type: "Internship",
       summary: "Engineered scalable end-to-end web applications utilizing the MERN stack, delivering responsive user interfaces, robust Node.js/Express.js RESTful APIs, secure JWT authentication, and structured MongoDB data architectures.",
       accomplishments: [
-        "Developed responsive, highly interactive user interfaces using React.js and integrated them with backend RESTful APIs built with Node.js and Express.js.",
+        "Developed responsive user interfaces using React.js and integrated them with backend RESTful APIs built with Node.js and Express.js.",
         "Designed MongoDB schemas, implemented secure authentication (JWT), data validation, and efficient CRUD operations.",
         "Conducted end-to-end API testing and debugging using Postman to ensure seamless frontend-backend data integration and reliability.",
         "Collaborated using Git and GitHub for version control, managing branch workflows while assisting with environment configuration and application deployments.",

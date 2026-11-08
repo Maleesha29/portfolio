@@ -7,15 +7,17 @@ import {
   TrendingUp, 
   X, 
   Cpu, 
-  CheckCircle2,
-  GitBranch,
-  ShieldAlert,
-  Package,
-  Boxes,
-  FileCode2
+  CheckCircle2, 
+  GitBranch, 
+  ShieldAlert, 
+  Package, 
+  Boxes, 
+  FileCode2,
+  Code2
 } from 'lucide-react';
 import { Icons } from './Icons';
 import { portfolioData } from '../data/portfolioData';
+import { ArchitectureDiagram } from './ArchitectureDiagram';
 
 export const Projects = () => {
   const { projects } = portfolioData;
@@ -38,35 +40,20 @@ export const Projects = () => {
   const getArtifactIcon = (type) => {
     switch (type) {
       case 'github':
-        return <Icons.Github className="w-3.5 h-3.5 text-cyan-400" />;
+        return <Icons.Github className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />;
       case 'helm':
-        return <Package className="w-3.5 h-3.5 text-blue-400" />;
+        return <Package className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />;
       case 'registry':
-        return <Boxes className="w-3.5 h-3.5 text-amber-400" />;
+        return <Boxes className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />;
       case 'action':
-        return <GitBranch className="w-3.5 h-3.5 text-purple-400" />;
+        return <GitBranch className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />;
       default:
-        return <FileCode2 className="w-3.5 h-3.5 text-emerald-400" />;
-    }
-  };
-
-  const getCategoryBadgeClass = (category) => {
-    switch (category) {
-      case 'DevOps & CI/CD':
-        return 'bg-purple-950/90 text-purple-300 border-purple-500/40';
-      case 'Kubernetes':
-        return 'bg-blue-950/90 text-blue-300 border-blue-500/40';
-      case 'Cloud / AWS':
-        return 'bg-amber-950/90 text-amber-300 border-amber-500/40';
-      case 'Docker & Containers':
-        return 'bg-sky-950/90 text-sky-300 border-sky-500/40';
-      default:
-        return 'bg-cyan-950/90 text-cyan-300 border-cyan-500/40';
+        return <FileCode2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />;
     }
   };
 
   return (
-    <section id="projects" className="py-20 relative">
+    <section id="projects" className="py-20 relative" aria-label="DevOps and Cloud Engineering Projects">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading & Filter Tabs */}
@@ -74,41 +61,36 @@ export const Projects = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 text-xs font-mono mb-3">
-              <FolderGit2 className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Production Deployments & Platform Engines</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-xs font-mono mb-3">
+              <FolderGit2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+              <span>Production Deployments & Infrastructure</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Featured <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Infrastructure Projects</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Featured <span className="bg-gradient-to-r from-cyan-500 to-violet-600 bg-clip-text text-transparent">Projects</span>
             </h2>
-            <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
-              Real-world architectures engineered for automated GitOps delivery, zero-trust security compliance, and measurable cloud cost reduction.
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+              Real-world architectures engineered for automated GitOps continuous delivery, zero-trust security compliance, and measurable reliability.
             </p>
           </motion.div>
 
-          {/* Filter Pills with animated layoutId indicator */}
-          <div className="flex flex-wrap gap-1.5 p-1.5 rounded-xl bg-gray-950 border border-cyan-500/20 backdrop-blur-md self-start md:self-auto shadow-inner relative">
+          {/* Filter Pills */}
+          <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 self-start md:self-auto">
             {categories.map((category) => {
               const isActive = activeFilter === category;
               return (
                 <button
                   key={category}
                   onClick={() => setActiveFilter(category)}
-                  className={`relative px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors z-10 ${
-                    isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-cyan-300'
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                    isActive 
+                      ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm' 
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeCategoryPill"
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-violet-600 rounded-lg shadow-md shadow-cyan-500/30"
-                      transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{category}</span>
+                  {category}
                 </button>
               );
             })}
@@ -116,226 +98,209 @@ export const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.96, y: 25 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
-                exit={{ opacity: 0, scale: 0.96, y: 15 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                whileHover={{ y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
-                className="group rounded-2xl bg-gray-950/80 border border-cyan-500/20 overflow-hidden hover:border-cyan-400/50 hover:shadow-2xl hover:shadow-cyan-950/40 backdrop-blur-xl transition-all flex flex-col justify-between relative"
-              >
-                <div>
-                  {/* Image Cover Preview with Gradient Overlay */}
-                  <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-black">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = project.category === 'Cloud / AWS'
-                          ? "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
-                          : project.category === 'Docker & Containers'
-                          ? "https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=1200&q=80"
-                          : "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=1200&q=80";
-                      }}
-                      className="w-full h-full object-cover object-center contrast-110 group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, idx) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col justify-between overflow-hidden"
+            >
+              <div>
+                {/* Image Cover Preview */}
+                <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-950">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    width={600}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=1200&q=80";
+                    }}
+                    className="w-full h-full object-cover object-center contrast-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-                    {/* Impact badge */}
-                    <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-gray-950/90 backdrop-blur-md border border-emerald-500/30 text-emerald-300 shadow-md">
-                        <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
-                        {project.metrics}
-                      </span>
-                      <span className={`text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-md border backdrop-blur-sm ${getCategoryBadgeClass(project.category)}`}>
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content body */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors flex items-center justify-between">
-                      <span>{project.title}</span>
-                    </h3>
-                    <p className="text-xs text-cyan-400/90 font-mono mt-1 mb-3">
-                      {project.tagline}
-                    </p>
-                    <p className="text-sm text-zinc-300 leading-relaxed line-clamp-3">
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 mt-5">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-gray-900 border border-cyan-500/15 text-cyan-300/80 group-hover:border-cyan-400/30 transition-colors"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Impact metric badge overlay */}
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-slate-900/90 text-emerald-400 border border-emerald-500/30">
+                      <TrendingUp className="w-3 h-3 text-emerald-400" />
+                      <span className="truncate max-w-[200px]">{project.metrics}</span>
+                    </span>
+                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-900/90 text-slate-300 border border-white/10">
+                      {project.category}
+                    </span>
                   </div>
                 </div>
 
-                {/* Action Links & Deep Dive button */}
-                <div className="px-6 pb-6 pt-2 flex items-center justify-between border-t border-white/10">
-                  <motion.button
-                    whileHover={{ x: 2 }}
-                    onClick={() => setSelectedProject(project)}
-                    className="text-xs font-semibold text-cyan-300 hover:text-white flex items-center gap-1 py-1.5 transition-colors font-mono group/btn"
+                {/* Content body */}
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs text-cyan-600 dark:text-cyan-400 font-mono mt-1 mb-3">
+                    {project.tagline}
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons: View Code + Live Demo + Deep Dive */}
+              <div className="px-6 pb-6 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <a
+                    href={project.repoUrl || project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-mono font-medium transition-colors"
                   >
-                    <span>Architecture Deep Dive</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform text-cyan-400 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </motion.button>
+                    <Code2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                    <span>View Code</span>
+                  </a>
 
-                  <div className="flex items-center gap-2.5">
-                    <motion.a
-                      whileHover={{ scale: 1.08 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-lg bg-gray-900 border border-white/10 hover:border-cyan-400/50 text-zinc-400 hover:text-cyan-300 transition-colors"
-                      aria-label={`GitHub repo for ${project.title}`}
-                      title="Source Repository"
-                    >
-                      <Icons.Github className="w-4 h-4" />
-                    </motion.a>
-                    <motion.a
-                      whileHover={{ scale: 1.08 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-lg bg-gray-900 border border-white/10 hover:border-cyan-400/50 text-zinc-400 hover:text-cyan-300 transition-colors"
-                      aria-label={`Live telemetry for ${project.title}`}
-                      title="Live Telemetry / System Demo"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </motion.a>
-                  </div>
+                  <a
+                    href={project.demoUrl || project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-mono font-medium transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
+                    <span>Live Demo</span>
+                  </a>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
 
-        {/* Project Deep Dive Modal with Trade-offs and Runnable Artifacts */}
+                <button
+                  onClick={() => setSelectedProject(project)}
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/20 text-xs font-mono font-semibold transition-colors"
+                >
+                  <span>Architecture Deep Dive</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Project Deep Dive Modal */}
         <AnimatePresence>
           {selectedProject && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
+              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
                 onClick={() => setSelectedProject(null)}
-                className="fixed inset-0 bg-black/90 backdrop-blur-md"
+                className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
               />
 
+              {/* Modal Container */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.93, y: 20 }}
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.93, y: 20 }}
-                transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-                className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gray-950 border border-cyan-500/30 shadow-2xl shadow-cyan-950/60 p-6 sm:p-8 z-10"
+                exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                transition={{ duration: 0.25 }}
+                className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-6 sm:p-8 z-10 text-left"
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <span className="text-xs font-mono uppercase tracking-wider text-cyan-400">
-                      Infrastructure Architecture Spec
+                    <span className="text-xs font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-semibold">
+                      Architecture & Delivery Spec
                     </span>
-                    <h3 className="text-2xl font-bold text-white mt-1 bg-gradient-to-r from-white via-cyan-200 to-indigo-200 bg-clip-text text-transparent">
+                    <h3 id="modal-project-title" className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
                       {selectedProject.title}
                     </h3>
                   </div>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     onClick={() => setSelectedProject(null)}
-                    className="p-1.5 rounded-lg bg-gray-900 text-zinc-400 hover:text-white transition-colors"
-                    aria-label="Close modal"
+                    className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+                    aria-label="Close architecture modal"
                   >
                     <X className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </div>
 
-                <p className="text-sm text-zinc-300 leading-relaxed mb-6">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                   {selectedProject.description}
                 </p>
 
-                {/* Runnable Code & Artifact Links */}
-                {selectedProject.artifacts && (
-                  <div className="mb-6 p-4 rounded-xl bg-gray-900/90 border border-cyan-500/20">
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-cyan-300 mb-3 flex items-center gap-2">
-                      <Boxes className="w-4 h-4 text-cyan-400" />
-                      Direct Links to Raw Code & Production Artifacts
+                {/* Architecture Diagram */}
+                <div className="mb-6">
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-2 font-semibold">
+                    <Cpu className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                    Architecture Flow Diagram
+                  </h4>
+                  <ArchitectureDiagram type={selectedProject.diagramType} />
+                </div>
+
+                {/* Outcome Metrics */}
+                {selectedProject.outcomes && (
+                  <div className="mb-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-2.5 flex items-center gap-2 font-semibold">
+                      <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      Measurable Engineering Outcomes
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {selectedProject.artifacts.map((art, aIdx) => (
-                        <motion.a
-                          key={aIdx}
-                          whileHover={{ x: 3 }}
-                          href={art.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center justify-between p-2.5 rounded-lg bg-gray-950 hover:bg-cyan-950/40 border border-white/10 hover:border-cyan-400/40 text-xs font-mono text-zinc-200 hover:text-cyan-200 transition-all group"
-                        >
-                          <div className="flex items-center gap-2">
-                            {getArtifactIcon(art.type)}
-                            <span>{art.label}</span>
-                          </div>
-                          <ExternalLink className="w-3.5 h-3.5 text-zinc-500 group-hover:text-cyan-400 transition-colors" />
-                        </motion.a>
+                    <ul className="space-y-2">
+                      {selectedProject.outcomes.map((outcome, oIdx) => (
+                        <li key={oIdx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                          <span>{outcome}</span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 )}
 
-                {/* Key Technical Highlights */}
+                {/* Implementation Highlights */}
                 <div className="mb-6">
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-300 mb-3 flex items-center gap-2">
-                    <Cpu className="w-4 h-4 text-indigo-400" />
-                    Engineering Highlights & Implementation Design
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-2 font-semibold">
+                    <GitBranch className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+                    Implementation Highlights
                   </h4>
-                  <ul className="space-y-2.5">
+                  <ul className="space-y-2">
                     {selectedProject.architecture.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-zinc-300 bg-gray-900/70 p-3 rounded-xl border border-white/10 hover:border-indigo-500/30 transition-colors">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <li key={idx} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0 mt-1.5" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Architectural Trade-offs Section */}
+                {/* Architectural Trade-offs */}
                 {selectedProject.tradeoffs && (
                   <div className="mb-6">
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-300 mb-3 flex items-center gap-2">
-                      <ShieldAlert className="w-4 h-4 text-amber-400" />
-                      Architectural Trade-Off Notes (Chosen vs. Rejected)
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-2 font-semibold">
+                      <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                      Architectural Decisions & Trade-Offs
                     </h4>
-                    <div className="space-y-3">
+                    <div className="space-y-2.5">
                       {selectedProject.tradeoffs.map((tradeoff, tIdx) => (
-                        <div key={tIdx} className="p-3.5 rounded-xl bg-indigo-950/30 border border-indigo-500/20 text-xs">
-                          <div className="font-semibold text-indigo-200 font-mono mb-1">
-                            Decision: {tradeoff.decision}
+                        <div key={tIdx} className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 text-xs">
+                          <div className="font-semibold text-slate-900 dark:text-white font-mono mb-1">
+                            {tradeoff.decision}
                           </div>
-                          <div className="text-zinc-300 leading-relaxed font-sans">
+                          <div className="text-slate-600 dark:text-slate-400 leading-relaxed">
                             {tradeoff.rationale}
                           </div>
                         </div>
@@ -344,39 +309,53 @@ export const Projects = () => {
                   </div>
                 )}
 
-                {/* Impact Metric Banner */}
-                <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-950/50 via-teal-950/40 to-gray-900 border border-emerald-500/30 mb-6 flex items-center gap-3">
-                  <TrendingUp className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <div>
-                    <div className="text-xs text-emerald-400 font-mono">Verified Metric Impact:</div>
-                    <div className="text-sm font-semibold text-emerald-200">{selectedProject.metrics}</div>
+                {/* Direct Artifact Links */}
+                {selectedProject.artifacts && (
+                  <div className="mb-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-2 font-semibold">
+                      <Boxes className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                      Repository Artifacts & Manifests
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {selectedProject.artifacts.map((art, aIdx) => (
+                        <a
+                          key={aIdx}
+                          href={art.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                        >
+                          <div className="flex items-center gap-2 truncate">
+                            {getArtifactIcon(art.type)}
+                            <span className="truncate">{art.label}</span>
+                          </div>
+                          <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Direct Action Links */}
-                <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
-                  <motion.a
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    href={selectedProject.github}
+                {/* Footer Buttons */}
+                <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <a
+                    href={selectedProject.repoUrl || selectedProject.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 hover:bg-gray-800 border border-white/10 text-xs font-mono font-medium text-white transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-mono font-medium transition-colors"
                   >
-                    <Icons.Github className="w-4 h-4 text-cyan-400" />
-                    Source Code
-                  </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    href={selectedProject.demo}
+                    <Icons.Github className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                    <span>View Repository</span>
+                  </a>
+                  <a
+                    href={selectedProject.demoUrl || selectedProject.demo}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-semibold text-xs font-mono shadow-lg shadow-cyan-500/25 hover:from-cyan-400 hover:to-violet-500 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-white text-xs font-mono font-semibold shadow-md shadow-cyan-500/20 transition-all"
                   >
-                    Launch Live Telemetry
+                    <span>Open Live Demo</span>
                     <ArrowUpRight className="w-4 h-4" />
-                  </motion.a>
+                  </a>
                 </div>
               </motion.div>
             </div>
@@ -387,6 +366,3 @@ export const Projects = () => {
     </section>
   );
 };
-
-
-

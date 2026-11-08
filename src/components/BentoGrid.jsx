@@ -26,6 +26,7 @@ import {
   Check
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import profileImg from '../assets/profile.jpg';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -190,13 +191,16 @@ export const BentoGrid = () => {
                 {/* Multi-color Glow border ring */}
                 <div className="absolute -inset-1.5 bg-gradient-to-tr from-cyan-400 via-indigo-500 to-pink-500 rounded-3xl blur-md opacity-50 group-hover/photo:opacity-100 transition duration-700" />
                 
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-cyan-500/30 bg-black shadow-2xl transition-transform duration-500 group-hover/photo:scale-[1.01]">
+                <div className="relative aspect-[2/3] rounded-2xl overflow-hidden border border-cyan-500/30 bg-gray-950 shadow-2xl transition-transform duration-500 group-hover/photo:scale-[1.01]">
                   {!imgError ? (
                     <img
-                      src={personal.avatar || "/profile.jpg"}
+                      src={profileImg || personal.avatar || "/profile.jpg"}
                       alt={`${personal.name} ${personal.surname}`}
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                       onError={() => setImgError(true)}
-                      className="w-full h-full object-cover object-center contrast-105 transition-all duration-700 group-hover/photo:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/photo:scale-[1.02] will-change-transform"
                     />
                   ) : (
                     <div className="w-full h-full rounded-2xl bg-gradient-to-b from-gray-900 via-gray-950 to-black flex flex-col items-center justify-center p-6 text-center">
@@ -212,7 +216,7 @@ export const BentoGrid = () => {
                   )}
 
                   {/* Gradient bottom scrim */}
-                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none" />
 
                   {/* Dynamic Status Badge overlay */}
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
